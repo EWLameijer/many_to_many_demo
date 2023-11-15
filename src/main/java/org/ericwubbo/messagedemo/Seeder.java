@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -29,7 +30,7 @@ public class Seeder implements CommandLineRunner {
     }
 
     private Message createMessage(Person sender, String text, Person... receivers) {
-        var message = new Message(sender, text, Arrays.stream(receivers).collect(Collectors.toSet()));
+        var message = new Message(sender, text, Set.of(receivers));
         return messageRepository.save(message);
     }
 
